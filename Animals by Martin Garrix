@@ -1,3 +1,33 @@
 # This is the code for Animals by Martin Garrix
 
 # Pre-Chorus: using Fmin chord
+
+patterned_notes = [:Ab3, :Ab3, :Bb3, :C4, :Eb4, :Bb3, :Bb3, :Ab3, :G3, :F3, :G3, :G3, :Ab3, :Ab3, :F3, :G3, :G3, :G3, :G3, :Ab3, :Ab3, :F3, :Ab3, :Ab3, :Bb3, :C4, :Eb4, :Bb3, :Bb3, :Ab3, :G3, :F3, :G3, :G3, :Ab3, :Ab3, :F3, :G3, :G3, :G3, :G3, :Bb3, :Bb3, :F]
+
+patterned_timing = [1, 0.5, 0.5, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0.5, 0.5, 0.5, 0.5, 1.5, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 2, 1, 0.5, 0.5, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0.5, 0.5, 0.5, 0.5, 1.5, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 2]
+
+use_bpm 65
+
+live_loop :prechorus do
+  #stop
+  with_fx :distortion, distort: 0.0 do
+  sample :bd_tek
+  play_patterned_timed patterned_notes, patterned_timing
+  end
+end
+
+live_loop :kick do
+  #stop
+  with_fx :distortion, distort: 0.0 do
+  sample :drum_bass_hard
+  sleep 1
+  end
+end
+
+live_loop :snare do
+  #stop
+  with_fx :distortion, distort: 0.0 do
+  sample :drum_snare_hard
+  sleep 2
+  end
+end
