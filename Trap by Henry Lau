@@ -1,2 +1,68 @@
 # This is the SonicPi code for song "Trap by Henry Lau"
 # Code is not elegant at the moment. Could use FOR LOOP to reduce the lines of code
+
+Fms=[:F3, :C3, :F2]
+Dbs=[:Db3, :Ab2, :F2]
+Abs=[:Eb3, :C3, :Ab2]
+
+Fm=[:F4, :Ab4, :C5]
+Cm=[:C4, :Eb4, :G4]
+Db=[:Db4, :F4, :Ab4]
+Bb=[:Bb4, :Db5, :F5]
+
+live_loop :Trap_by_Henry do
+  use_bpm 58
+  use_synth :piano
+  
+  8.times do
+    play_pattern_timed Fms, [0.125]
+  end
+  8.times do
+    play_pattern_timed Dbs, [0.125]
+  end
+  8.times do
+    play_pattern_timed Abs, [0.125]
+  end
+  
+  sleep 0.125
+  play [:Ab1, :Ab2], sustain: 0.25, amp: 2
+  sleep 0.375
+  play [:Bb1, :Bb2], sustain: 0.25, amp: 2
+  sleep 0.375
+  play [:C1, :C2, :G2, :C3, :E3], amp: 7, sustain: 0.5, release: 0.25
+  sleep 0.375
+  
+  play_pattern_timed [:C2, :E2, :G2, :C3, :C3, :E3, :G3, :C4, :E4, :G4, :C5, :C5, :E5, :G5, :C6], [0.125]
+  sleep 0.5
+  
+  8.times do
+    play Fm, amp:2
+    sleep 0.375
+  end
+  8.times do
+    play Cm, amp:2
+    sleep 0.375
+  end
+  8.times do
+    play Db, amp:2
+    sleep 0.375
+  end
+  8.times do
+    play Bb, amp:2
+    sleep 0.375
+  end
+  
+  8.times do
+    play_pattern_timed Fm, [0.125]
+  end
+  8.times do
+    play_pattern_timed Cm, [0.125]
+  end
+  8.times do
+    play_pattern_timed Db, [0.125]
+  end
+  8.times do
+    play_pattern_timed Bb, [0.125]
+  end
+
+end
