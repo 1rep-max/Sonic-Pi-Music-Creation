@@ -2,32 +2,69 @@
 
 # Pre-Chorus: using Fmin chord
 
-patterned_notes = [:Ab3, :Ab3, :Bb3, :C4, :Eb4, :Bb3, :Bb3, :Ab3, :G3, :F3, :G3, :G3, :Ab3, :Ab3, :F3, :G3, :G3, :G3, :G3, :Ab3, :Ab3, :F3, :Ab3, :Ab3, :Bb3, :C4, :Eb4, :Bb3, :Bb3, :Ab3, :G3, :F3, :G3, :G3, :Ab3, :Ab3, :F3, :G3, :G3, :G3, :G3, :Bb3, :Bb3, :F]
-
+patterned_notes = [:Ab3, :Ab3, :Bb3, :C4, :Eb4, :Bb3, :Bb3, :Ab3, :G3, :F3, :G3, :G3, :Ab3, :Ab3, :F3, :G3, :G3, :G3, :G3, :Ab3, :Ab3, :F3, :Ab3, :Ab3, :Bb3, :C4, :Eb4, :Bb3, :Bb3, :Ab3, :G3, :F3, :G3, :G3, :Ab3, :Ab3, :F3, :G3, :G3, :G3, :G3, :Bb3, :Bb3, :F3]
 patterned_timing = [1, 0.5, 0.5, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0.5, 0.5, 0.5, 0.5, 1.5, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 2, 1, 0.5, 0.5, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0.5, 0.5, 0.5, 0.5, 1.5, 0.25, 0.25, 0.5, 0.5, 0.5, 0.5, 2]
 
-use_bpm 65
+use_bpm 128
 
+###### PRE CHORUS ######
 live_loop :prechorus do
-  #stop
-  with_fx :distortion, distort: 0.0 do
-  sample :bd_tek
-  play_patterned_timed patterned_notes, patterned_timing
+  ##| stop
+  with_fx :ixi_techno do
+    sync :tick
+    use_synth :piano
+    play_pattern_timed patterned_notes, patterned_timing, amp: 2
   end
 end
 
-live_loop :kick do
-  #stop
-  with_fx :distortion, distort: 0.0 do
-  sample :drum_bass_hard
+####### BASELINE #######
+live_loop :bd_haus do
+  ##| stop
+  cue :tick
+  sample :bd_haus, amp: 1
   sleep 1
+end
+live_loop :bd_boom do
+  ##| stop
+  with_fx :reverb do
+    sync :tick
+    sample :bd_boom, amp: 1
   end
 end
 
-live_loop :snare do
-  #stop
-  with_fx :distortion, distort: 0.0 do
-  sample :drum_snare_hard
-  sleep 2
+###### ADD TO BASELINE ######
+live_loop :snares do
+  ##| stop
+  with_fx :reverb do
+    sync :tick
+    sample :drum_snare_soft, amp: 0.5
+    sleep 1
+  end
+end
+live_loop :drums do
+  ##| stop
+  with_fx :reverb do
+    sync :tick
+    sample :drum_bass_soft, amp: 1.5
+    sleep 1
+  end
+end
+
+###### SPECIAL SOUND EFFECTS ######
+live_loop :lunar do
+  ##| stop
+  sync :tick
+  sample :ambi_lunar_land, amp: 0.8
+  sleep 6
+end
+
+live_loop :weirdo do
+  ##| stop
+  with_fx :echo do
+    with_fx :hpf do
+      sync :tick
+      sample :loop_weirdo, amp: 0.6
+      sleep 6
+    end
   end
 end
